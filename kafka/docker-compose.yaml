@@ -22,9 +22,8 @@ services:
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
       KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
 
-  # Once everything’s up, create the topic with:
-  # docker exec -it kafka kafka-topics --create \
-  # --topic test-topic \
-  # --bootstrap-server localhost:9092 \
-  # --partitions 1 \
-  # --replication-factor 1
+  # Once everything’s up, creates 20 the topics with:
+  # for i in {1..20}; do docker exec -it kafka kafka-topics --create --topic sensor$i --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1; done
+
+  # Then check the topics created:
+  # docker exec -it kafka kafka-topics --list --bootstrap-server localhost:9092
