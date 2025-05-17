@@ -113,6 +113,25 @@ def parse_data():
     print(result)
     return df
 
+def train(model, criterion, optimizer, TRAIN_X, TRAIN_Y, epochs):
+    num_epochs = epochs
+    h0, c0 = None, None
+
+    for epoch in range(num_epochs):
+        model.train()
+        optimizer.zero_grad()
+
+        outputs, h0, c0 = model(TRAIN_X, h0, c0)
+
+        loss = criterion(outputs, TRAIN_Y)
+        loss.backward()
+        optimizer.step()
+
+        h0 = h0.detach()
+        c0 = c0.detach()
+
+    return h0, c0
+
 def main():
     model, TEST_X = lstm()
 
@@ -150,3 +169,5 @@ def main():
 
         except Exception as e:
             print("❌ ERROR:", e)
+
+main()
