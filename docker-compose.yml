@@ -12,6 +12,8 @@ services:
       - INFLUXDB_TOKEN=${INFLUXDB_TOKEN}
       - INFLUXDB_BUCKET=${INFLUXDB_BUCKET}
       - GF_DASHBOARDS_MIN_REFRESH_INTERVAL=1s
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Viewer
+      - GF_AUTH_ANONYMOUS_ENABLED=true
   
   influxdb2:
     image: influxdb:2
@@ -24,13 +26,35 @@ services:
       - influxdb2-data:/var/lib/influxdb2
       - influxdb2-config:/etc/influxdb2
 
-  py-backend:
-    container_name: py-backend
-    build: ./backend
-    env_file:
-      - .env
-    depends_on:
-      - influxdb2
+  # py-backend:
+  #   container_name: py-backend
+  #   build: ./backend
+  #   env_file:
+  #     - .env
+  #   depends_on:
+  #     - influxdb2
+
+  # zookeeper:
+  #   image: confluentinc/cp-zookeeper:latest
+  #   container_name: zookeeper
+  #   ports:
+  #     - "2181:2181"
+  #   environment:
+  #     ZOOKEEPER_CLIENT_PORT: 2181
+  #     ZOOKEEPER_TICK_TIME: 2000
+
+  # kafka:
+  #   image: confluentinc/cp-kafka:latest
+  #   container_name: kafka
+  #   depends_on:
+  #     - zookeeper
+  #   ports:
+  #     - "9092:9092"
+  #   environment:
+  #     KAFKA_BROKER_ID: 1
+  #     KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+  #     KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://10.65.106.228:9092
+  #     KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
 
 volumes:
   influxdb2-data:
