@@ -136,7 +136,7 @@ def main():
     model, TEST_X = lstm()
 
     df = parse_data()
-    test_index = 30
+    test_index = 14
 
     token, org, bucket = env_setup()
     url="http://localhost:8086"
@@ -149,7 +149,7 @@ def main():
 
     write_api = client.write_api(write_options=SYNCHRONOUS)
     while test_index > 0:
-        timestamp = df.iloc[index]["packet_time"]
+        timestamp = df.iloc[test_index]["packet_time"]
         prediction = predict(model, TEST_X[test_index].unsqueeze(0))[0][0]
 
         try:            
@@ -165,8 +165,5 @@ def main():
 
         except Exception as e:
             print("❌ ERROR:", e)
-
-        index += 1
-        test_index += 1
 
 main()
