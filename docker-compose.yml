@@ -24,13 +24,13 @@ services:
       - influxdb2-data:/var/lib/influxdb2
       - influxdb2-config:/etc/influxdb2
 
-  py-backend:
-    container_name: py-backend
-    build: ./backend
-    env_file:
-      - .env
-    depends_on:
-      - influxdb2
+  # py-backend:
+  #   container_name: py-backend
+  #   build: ./backend
+  #   env_file:
+  #     - .env
+  #   depends_on:
+  #     - influxdb2
 
 volumes:
   influxdb2-data:
