@@ -2578,8 +2578,8 @@
     "list": []
   },
   "time": {
-    "from": "2025-05-15T20:39:18.894Z",
-    "to": "2025-05-17T09:17:55.613Z"
+    "from": "2025-05-16T01:19:55.941Z",
+    "to": "2025-05-16T19:28:57.566Z"
   },
   "timepicker": {
     "refresh_intervals": [
@@ -2599,5 +2599,5 @@
   "timezone": "browser",
   "title": "Temperature Anomaly",
   "uid": "1caf3b35-3c6a-4835-8754-7f22b315b7d4",
-  "version": 4
+  "version": 1
 }
