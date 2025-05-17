@@ -25,9 +25,6 @@ def parse_data():
 
 
 def initialize():
-
-  
-
     df = parse_data()
 
     formatted_df = df[["packet_time", "items"]].copy()
@@ -56,7 +53,6 @@ def initialize():
             for key, value in sensors.items():
                 
                 if isinstance(value, (int, float)):
-                    print("hello")
                     point = (
                         influxdb_client.Point("thermal_readings")
                         .tag("sensor", key)
