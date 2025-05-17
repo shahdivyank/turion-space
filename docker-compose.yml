@@ -9,8 +9,9 @@ services:
       - "./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources"
       - "./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards"
     environment:
-      INFLUXDB_TOKEN: ${INFLUXDB_TOKEN}
-      INFLUXDB_BUCKET: ${INFLUXDB_BUCKET}
+      - INFLUXDB_TOKEN=${INFLUXDB_TOKEN}
+      - INFLUXDB_BUCKET=${INFLUXDB_BUCKET}
+      - GF_DASHBOARDS_MIN_REFRESH_INTERVAL=1s
   
   influxdb2:
     image: influxdb:2
