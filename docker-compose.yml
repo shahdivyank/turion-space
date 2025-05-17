@@ -8,3 +8,18 @@ services:
     volumes:
       - "./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources"
       - "./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards"
+  
+  influxdb2:
+    image: influxdb:2
+    container_name: influxdb2
+    ports:
+      - "8086:8086"
+    env_file:
+      - .env
+    volumes:
+      - influxdb2-data:/var/lib/influxdb2
+      - influxdb2-config:/etc/influxdb2
+
+volumes:
+  influxdb2-data:
+  influxdb2-config:
