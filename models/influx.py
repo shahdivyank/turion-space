@@ -56,8 +56,8 @@ def prepare(sequence):
 
     datapoints = len(data)
 
-    data = data[:int(datapoints * 0.7)]
-    testdata = testdata[int(datapoints * 0.7):]
+    data = data[30:]
+    testdata = testdata[:30]
 
     data = (data - np.mean(data)) / np.std(data)
 
@@ -136,8 +136,7 @@ def main():
     model, TEST_X = lstm()
 
     df = parse_data()
-    index = 71
-    test_index = 0
+    test_index = 30
 
     token, org, bucket = env_setup()
     url="http://localhost:8086"
@@ -150,8 +149,8 @@ def main():
 
     write_api = client.write_api(write_options=SYNCHRONOUS)
 
-    while test_index < 30:
-        timestamp = df.iloc[index]
+    while test_index > 0:
+        timestamp = df.iloc[test_index]
 
         prediction = predict(model, TEST_X[test_index].unsqueeze(0))[0][0]
 
@@ -164,8 +163,7 @@ def main():
             )
             write_api.write(bucket=bucket, org=org, record=point)
 
-            index += 1
-            test_index += 1
+            test_index -= 1
 
         except Exception as e:
             print("❌ ERROR:", e)
