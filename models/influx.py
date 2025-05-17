@@ -150,8 +150,8 @@ def main():
 
     write_api = client.write_api(write_options=SYNCHRONOUS)
 
-    while test_index < 30:
-        timestamp = df.iloc[index]
+    while test_index < 15:
+        timestamp = df.iloc[index]["packet_time"]
 
         prediction = predict(model, TEST_X[test_index].unsqueeze(0))[0][0]
 
@@ -164,10 +164,10 @@ def main():
             )
             write_api.write(bucket=bucket, org=org, record=point)
 
-            index += 1
-            test_index += 1
-
         except Exception as e:
             print("❌ ERROR:", e)
+
+        index += 1
+        test_index += 1
 
 main()
