@@ -8,6 +8,8 @@ services:
     volumes:
       - "./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources"
       - "./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards"
+    environment:
+      INFLUXDB_TOKEN: ${INFLUXDB_TOKEN}
   
   influxdb2:
     image: influxdb:2
