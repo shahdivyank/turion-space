@@ -6,7 +6,7 @@ datasources:
     access: proxy
     url: http://influxdb2:8086
     jsonData:
-      dbName: site
+      dbName: '${INFLUXDB_BUCKET}'
       httpHeaderName1: 'Authorization'
     secureJsonData:
       httpHeaderValue1: 'Token ${INFLUXDB_TOKEN}'

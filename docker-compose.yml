@@ -10,6 +10,7 @@ services:
       - "./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards"
     environment:
       INFLUXDB_TOKEN: ${INFLUXDB_TOKEN}
+      INFLUXDB_BUCKET: ${INFLUXDB_BUCKET}
   
   influxdb2:
     image: influxdb:2
